@@ -50,6 +50,8 @@ struct http_client_t {
 	mbedtls_ssl_context       tls_ssl;
 	mbedtls_net_context       tls_client_fd;
 #endif
+
+	int keep_alive;
 };
 
 struct http_message_len_t {
@@ -73,7 +75,8 @@ int http_parse_message(char *buf, int buf_len, int *method, char *url,
 					   struct http_keyvalue_list_t *params,
 					   struct http_client_t *client,
 					   struct http_client_response_t *response,
-					   struct http_req_message *req);
+					   struct http_req_message *req,
+					   int *chunk_processed);
 int   http_recv_and_handle_request(struct http_client_t *client, struct http_keyvalue_list_t *request_params);
 
 #ifdef CONFIG_NET_SECURITY_TLS

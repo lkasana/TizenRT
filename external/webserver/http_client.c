@@ -185,6 +185,11 @@ int http_parse_message(char *buf, int buf_len, int *method, char *url,
 	char *entity = *body;
 	bool is_chunked = false;
 
+	printf("====================================\n");
+	printf("amit buffer received:\n");
+	printf("%s\n", buf);
+	printf("====================================\n");
+
 	while (!process_finish) {
 		/* At this point, we read a line of http request */
 		switch (*state) {
@@ -516,6 +521,9 @@ int http_recv_and_handle_request(struct http_client_t *client, struct http_keyva
 		return HTTP_ERROR;
 	}
 
+	//amit
+	memset(buf, 0, HTTP_CONF_MAX_REQUEST_LENGTH);
+
 	if (getpeername(client->client_fd, (struct sockaddr *)&addr, &addr_len) < 0) {
 		HTTP_LOGE("Error: Fail to getpeername\n");
 		goto errout;
@@ -567,6 +575,9 @@ int http_recv_and_handle_request(struct http_client_t *client, struct http_keyva
 				}
 			}
 
+			//reset chunk_processed
+			chunk_processed = 0;
+
                         buf_len = unprocessed;
                         remain = HTTP_CONF_MAX_REQUEST_LENGTH - buf_len;
                         memset(&mlen, 0x0, sizeof(struct http_message_len_t));
@@ -575,7 +586,8 @@ int http_recv_and_handle_request(struct http_client_t *client, struct http_keyva
 
 	// Check "Connection" header value
 	conn_type = http_keyvalue_list_find(request_params, "Connection");
-	if (!strcmp(conn_type, "Keep-Alive")) {
+	//if (!strcmp(conn_type, "Keep-Alive")) {
+	if (!strncasecmp(conn_type, "Keep-Alive", strlen("Keep-Alive")+1)) {
 		client->keep_alive = 1;
 	} else {
 		client->keep_alive = 0;

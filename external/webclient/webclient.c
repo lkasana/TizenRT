@@ -152,7 +152,8 @@
 #define ISO_cr                     0x0d
 #define ISO_space                  0x20
 
-#define MBED_DEBUG_LEVEL 0
+//#define MBED_DEBUG_LEVEL 0
+#define MBED_DEBUG_LEVEL 5
 
 /****************************************************************************
  * Private Types
@@ -1066,7 +1067,7 @@ retry:
 						 &param->response->entity,
 						 &encoding, &state, &mlen,
 						 param->response->headers,
-						 NULL, param->response, NULL);
+						 NULL, param->response, NULL, 0);
 
 		++loopcount;
 		nvdbg("====== loopcount : %d read_finish : %d=====\n", loopcount, read_finish);
@@ -1222,7 +1223,7 @@ static pthread_addr_t wget_base(void *arg)
 						 &param->response->entity,
 						 &encoding, &state, &mlen,
 						 param->response->headers,
-						 NULL, param->response, NULL);
+						 NULL, param->response, NULL, 0);
 
 		++loopcount;
 		nvdbg("====== loopcount : %d read_finish : %d=====\n", loopcount, read_finish);

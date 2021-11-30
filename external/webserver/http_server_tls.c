@@ -25,7 +25,8 @@
 
 const char *pers = "http_tls_server";
 
-#define MBED_DEBUG_LEVEL 0
+//#define MBED_DEBUG_LEVEL 0
+#define MBED_DEBUG_LEVEL 5
 
 static void http_tls_debug(void *ctx, int level, const char *file, int line, const char *str)
 {

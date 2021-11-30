@@ -97,7 +97,8 @@ int main(void)
 	"<p>Successful connection using: %s</p>\r\n"
 #define TLS_DATA "This is from SERVER"
 
-#define DEBUG_LEVEL 3
+//#define DEBUG_LEVEL 3
+#define DEBUG_LEVEL 5
 
 static void my_debug(void *ctx, int level,
 					 const char *file, int line,

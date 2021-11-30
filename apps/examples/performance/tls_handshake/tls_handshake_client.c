@@ -33,7 +33,8 @@
 static char *SERVER_ADDR = NULL;
 #define GET_REQUEST "GET / HTTP/1.0\r\n\r\n"
 
-#define DEBUG_LEVEL 0
+//#define DEBUG_LEVEL 0
+#define DEBUG_LEVEL 5
 
 #define mbedtls_printf printf
 

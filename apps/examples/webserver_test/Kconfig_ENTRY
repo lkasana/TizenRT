@@ -1,0 +1,3 @@
+config ENTRY_WEBSERVER_TEST
+	bool "TinyAra Webserver test"
+	depends on EXAMPLES_WEBSERVER_TEST
